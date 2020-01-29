@@ -35,7 +35,21 @@ void main(){
   runApp(FetchData());
 }
 
-class FetchData extends StatelessWidget{
+class FetchData extends StatefulWidget{
+createState(){
+  return FetchDataState();
+}
+}
+
+class FetchDataState extends State<FetchData>{
+Future<Post> post;
+
+@override
+  void initState() {
+    super.initState();
+    post = fetchPost();
+  }
+  
   Widget build(context){
     return MaterialApp(
       home: Scaffold(
