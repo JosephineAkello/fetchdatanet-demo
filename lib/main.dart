@@ -49,15 +49,26 @@ Future<Post> post;
     super.initState();
     post = fetchPost();
   }
-  
+
   Widget build(context){
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('Fetch data'),
         ),
-        body: Container(),
-      ),
-    );
+        body: Center(
+          child: FutureBuilder<Post>(
+            future: post,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(snapshot.data.title);
+              } else if (snapshot.hasError) {
+                return Text("${snapshot.error}");
+              }
+
+            //show a loading spinner by default
+              return CircularProgressIndicator();
+    
+            
   }
 }
